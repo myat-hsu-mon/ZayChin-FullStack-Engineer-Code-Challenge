@@ -7,3 +7,17 @@
    display: inline-block;
    width:30%;
  }
+
+ .total{
+   margin-left: 65%;
+   width:170px;
+   padding-left: 10px;
+ }
+
+ .count{
+  display: inline-block;
+  width: 25px;
+  margin-left: 3px;
+  margin-right: 3px;
+  color: red;
+}

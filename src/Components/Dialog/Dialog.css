@@ -1,5 +1,9 @@
 .cart-dialogue{
-   border:1px solid black;
    display: inline-block;
-   color: blue;
+   width:70%;
+ }
+
+ .count-dialogue{
+   display: inline-block;
+   width:30%;
  }

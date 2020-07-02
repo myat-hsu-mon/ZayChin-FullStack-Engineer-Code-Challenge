@@ -28,18 +28,17 @@ class App extends React.Component {
           })
 
           if(this.state.selectedItemsArray.length){
+            let pushNewItem = true;
             newArray = this.state.selectedItemsArray.map((selectedItem,index)=>{
               if(selectedItem.id === itemId){
                     selectedItem = Object.assign({...selectedItem},{...item})
-                    return selectedItem;
-              }else if(selectedItem.id !== itemId && index < this.state.selectedItemsArray.length){
-                    return item;
-              }else{
-                return selectedItem;
+                    pushNewItem = false;
               }
-               
+              return selectedItem;
             })
-
+            if(pushNewItem){
+              newArray.push(item)
+            }
           }else{
             newArray.push(item);
           }
@@ -52,9 +51,6 @@ class App extends React.Component {
         data : updatedData
       })
 
-      // setTimeout(()=>{
-      //   console.log("Dialog plus Array: ", this.state.selectedItemsArray)
-      // },1000)
   }
 
   handleDecreasedOnClick = (itemId) =>{
@@ -97,6 +93,12 @@ class App extends React.Component {
     })
   }
 
+  handleHideDialog = ()=>{
+    this.setState({
+      showDialog:false
+    })
+  }
+
   componentDidMount(){
     axios.get('https://api.jsonbin.io/b/5efaf74c0bab551d2b693833')
     .then((data) => {
@@ -114,7 +116,7 @@ class App extends React.Component {
         {this.state.title} 
         <div className="cart-div">
           <button className="cart" onClick={()=>this.handleDialogClick()}>{this.state.totalQuantity}</button>
-          <Modal show={this.state.showDialog}>
+          <Modal show={this.state.showDialog} onHide={this.handleHideDialog}>
                 <DialogComponent selectedItemsArray= {this.state.selectedItemsArray} handleIncreasedOnClick={this.handleIncreasedOnClick} handleDecreasedOnClick={this.handleDecreasedOnClick}/>
           </Modal>
         </div>       

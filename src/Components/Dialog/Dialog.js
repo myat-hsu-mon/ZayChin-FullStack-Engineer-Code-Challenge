@@ -10,8 +10,10 @@ function Dialog(props) {
            <div className="cart-dialogue">
                <img src={item.thumbnail} alt="fruit"/>
                {item.name}
-           </div>         
+           </div>      
+           <div className="count-dialogue">
            <Quantity id={item.id} price={item.price}  quantity={item.max_quantity_per_order} handleDecreasedOnClick={props.handleDecreasedOnClick} handleIncreasedOnClick={props.handleIncreasedOnClick}></Quantity>
+         </div >   
 
          </div>)
          
